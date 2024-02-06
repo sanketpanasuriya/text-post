@@ -7,4 +7,8 @@ module ApplicationHelper
       when 'alert' then 'alert alert-danger'
     end
 	end
+
+  def form_submit_button(object)
+    object.new_record? ? 'Create' : 'Update'
+  end
 end

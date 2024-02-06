@@ -1,0 +1,11 @@
+<div class='card bg-body-tertiary w-50 my-3' id='tweet-<%= tweet.id %>'>
+  <!-- <img src='...' class='card-img-top' alt='...'> -->
+  <div class='card-body'>
+    <h5 class='card-title'><%= tweet.user&.email %></h5>
+    <p class='card-text tweet-content'><%= tweet.content %></p>
+    <% if can_manage_post?(tweet) %>
+      <%= link_to '', edit_tweet_path(tweet), class: 'btn btn-primary far fa-edit', remote: true %>
+      <%= link_to '', tweet, method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: 'btn btn-danger fa-solid fa-trash' %>
+    <% end %>
+  </div>
+</div>

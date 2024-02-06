@@ -1,0 +1,30 @@
+<div class='modal-dialog'>
+  <div class='modal-content'>
+    <%= form_for tweet, remote: true do |form| %>
+      <div class='modal-header'>
+        <h5 class='modal-title'>Post a Message</h5>
+        <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+      </div>
+      <div class='modal-body'>
+        <% if tweet.errors.any? %>
+          <div id="error_explanation">
+            <h5><%= pluralize(tweet.errors.count, "error") %> prohibited this tweet from being saved:</h5>
+
+            <ul>
+              <% tweet.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class='mb-3'>
+          <%= form.text_area :content, class: 'form-control', placeholder: 'Write your message here...' %>
+        </div>
+      </div>
+      <div class='modal-footer'>
+        <%= form.submit form_submit_button(tweet), class: 'btn btn-primary' %>
+        <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>
+      </div>
+    <% end %>
+  </div>
+</div>
