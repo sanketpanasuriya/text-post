@@ -1,0 +1,13 @@
+.tweet-content {
+  white-space: pre-wrap;
+}
+
+.file-icon {
+  color: cadetblue;
+  font-size: 100px
+}
+
+.tweet-image, .tweet-video {
+  height: 150px;
+  width: 150px;
+}
