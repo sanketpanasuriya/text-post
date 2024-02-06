@@ -9,7 +9,6 @@
         <% if tweet.errors.any? %>
           <div id="error_explanation">
             <h5><%= pluralize(tweet.errors.count, "error") %> prohibited this tweet from being saved:</h5>
-
             <ul>
               <% tweet.errors.each do |error| %>
                 <li><%= error.full_message %></li>
@@ -17,6 +16,10 @@
             </ul>
           </div>
         <% end %>
+        <div class='mb-3'>
+          <%= form.file_field :files, multiple: true %>
+        </div>
+        <div id='file-preview' class='d-flex justify-content-between flex-wrap mb-3 gap-3'></div>
         <div class='mb-3'>
           <%= form.text_area :content, class: 'form-control', placeholder: 'Write your message here...' %>
         </div>
@@ -28,3 +31,32 @@
     <% end %>
   </div>
 </div>
+<script>
+  $(document).on('change', '#tweet_files', function(e) { 
+    const $previewContainer = $('#file-preview').html(''); // Clear previous previews
+    // Loop through selected files
+    $(this).each(function(index, fileInput) {
+      $.each(fileInput.files, function(index, file) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          const previewElement = getPreviewElement(file);
+          previewElement.attr('src', e.target.result);
+          $previewContainer.append(previewElement);
+        };
+        reader.readAsDataURL(file);
+      });
+    });
+  });
+
+  function getPreviewElement(file) {
+    if (file.type.startsWith('image')) {
+      return $('<img>').addClass('img-thumbnail').attr('width', 100).attr('height', 100);
+    } else if (file.type.startsWith('video')) {
+      return $('<video>').addClass('img-thumbnail').attr('width', 100).attr('height', 100).attr('controls', true);
+    } else if (file.type === 'application/pdf') {
+      return $('<embed>').attr('width', 100).attr('height', 100).attr('type', 'application/pdf');
+    } else {
+      return $('<span>').addClass('file-icon').append("<i class='fas fa-file'></i>");
+    }
+  }
+</script>

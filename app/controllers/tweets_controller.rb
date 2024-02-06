@@ -6,6 +6,10 @@ class TweetsController < ApplicationController
     @tweets = Tweet.all
   end
 
+  def my_tweets
+    @tweets = Tweet.by_user(current_user.id)
+  end
+
   # GET /tweets/1
   def show
   end
@@ -69,6 +73,6 @@ class TweetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tweet_params
-      params.require(:tweet).permit(:content)
+      params.require(:tweet).permit(:content, files: [])
     end
 end
