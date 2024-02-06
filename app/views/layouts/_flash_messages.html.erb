@@ -1,0 +1,9 @@
+<% flash.each do |key, value| %>
+  <div class="d-flex justify-content-between alert alert-<%= flash_class(key) %> alert-dismissible">
+    <%= value %>
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  </div>
+<% end %>
+<script>
+  closeAlert();
+</script>

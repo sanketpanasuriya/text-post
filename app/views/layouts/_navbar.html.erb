@@ -1,0 +1,33 @@
+<% if current_user %>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
+    <div class="container-fluid  d-flex  align-items-start align-items-sm-start align-items-lg-center">
+      <div class="navbar-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+       
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class = "nav-item">
+            <%= link_to "Home" , root_path , class: "nav-link" %>
+          </div>
+          <div class = "nav-item">
+            <%= link_to "Tweets", tweets_path,class: "nav-link" %>
+          </div>
+          <div class="col-3">
+          </div>
+        </div>
+      </div>
+      <div class="nav-item d-flex my-lg-1 align-items-center justify-content-end">
+        <div class="dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <%= current_user.email %>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %></li>
+            <li><%= button_to "Logout", destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure for logout?' }, class: 'dropdown-item'%></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+<% end %>
