@@ -14,6 +14,9 @@
             <%= link_to "Tweets", tweets_path,class: "nav-link" %>
           </div>
           <div class = "nav-item">
+            <%= link_to "Followings", followings_tweets_path,class: "nav-link", style: 'width: max-content;' %>
+          </div>
+          <div class = "nav-item">
             <%= link_to "My Tweets", my_tweets_tweets_path,class: "nav-link", style: 'width: max-content;' %>
           </div>
           <div class="col-3">
@@ -28,6 +31,9 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %></li>
             <li><%= button_to "Logout", destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure for logout?' }, class: 'dropdown-item'%></li>
+            <li><hr/><li>
+            <li>Followers: <%= current_user.followers.count %></li>
+            <li>Followings: <%= current_user.followings.count %></li>
           </ul>
         </div>
       </div>

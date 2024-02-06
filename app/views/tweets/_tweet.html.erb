@@ -1,6 +1,9 @@
 <div class='card bg-body-tertiary w-50 my-3' id='tweet-<%= tweet.id %>'>
   <div class='card-body'>
-    <h5 class='card-title'><%= tweet.user&.email %></h5>
+    <div class='d-flex justify-content-between'>
+      <h5 class='card-title'><%= tweet.user&.email %></h5>
+      <%= render partial: 'follows/follow', locals: { user: tweet.user } %>
+    </div>
     <p class='card-text tweet-content'><%= tweet.content %></p>
     <div>
       <%= render 'files', tweet: tweet%>
