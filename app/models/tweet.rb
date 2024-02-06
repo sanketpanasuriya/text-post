@@ -5,6 +5,7 @@ class Tweet < ApplicationRecord
   has_many_attached :files
 
   scope :by_user, ->(user_id){ where(user_id: user_id) }
+  scope :followings, ->(user_id) { where(user_id: Follow.where(follower_id: user_id).select(:followed_id)) }
 
   def image_attachments!
     files.select { |file| file.content_type.start_with?('image/') }

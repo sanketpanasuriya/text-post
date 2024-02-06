@@ -10,6 +10,10 @@ class TweetsController < ApplicationController
     @tweets = Tweet.by_user(current_user.id)
   end
 
+  def followings
+    @tweets = Tweet.followings(current_user.id)
+  end
+
   # GET /tweets/1
   def show
   end

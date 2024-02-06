@@ -1,0 +1,2 @@
+$('#flash_messages').html('<%= escape_javascript(render partial: 'layouts/flash_messages') %>');
+$('.follow-<%= @user.id %>').replaceWith('<%=j render partial: 'follow', locals: { user: @user } %>');
