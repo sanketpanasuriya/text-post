@@ -1,0 +1,18 @@
+<div class='d-flex flex-wrap mb-3 gap-3'>
+  <% tweet.image_attachments!.each do |image| %>
+    <%= image_tag image, class: "tweet-image" %>
+  <% end %>
+  <% tweet.video_attachments!.each do |video| %>
+    <%= video_tag video, class: "tweet-video" %>
+  <% end %>
+  <% tweet.pdf_attachments!.each do |pdf| %>
+    <%= link_to rails_blob_path(pdf, disposition: "inline"), target: "_blank", class: 'file-icon' do %>
+      <i class='fas fa-file'></i>
+    <% end %>
+  <% end %>
+</div>
+<div class='d-flex flex-column'>
+  <% tweet.other_attachments!.each do |attachment| %>
+    <p>Attachment: <%= attachment.filename %></p>
+  <% end %>
+</div>
