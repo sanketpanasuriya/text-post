@@ -3,7 +3,7 @@
     <%= image_tag image, class: "tweet-image" %>
   <% end %>
   <% tweet.video_attachments!.each do |video| %>
-    <%= video_tag video, class: "tweet-video" %>
+    <%= video_tag rails_blob_path(video), class: "tweet-video", controls: true %>
   <% end %>
   <% tweet.pdf_attachments!.each do |pdf| %>
     <%= link_to rails_blob_path(pdf, disposition: "inline"), target: "_blank", class: 'file-icon' do %>
