@@ -2,15 +2,18 @@
   <div class='card-body'>
     <div class='d-flex justify-content-between'>
       <h5 class='card-title'><%= tweet.user&.email %></h5>
-      <%= render partial: 'follows/follow', locals: { user: tweet.user } %>
+      <% if can_manage_post?(tweet) %>
+        <div>
+          <%= link_to '', edit_tweet_path(tweet), class: 'btn btn-primary far fa-edit', remote: true %>
+          <%= link_to '', tweet, method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: 'btn btn-danger fa-solid fa-trash' %>
+        </div>
+      <% else %>
+        <%= render partial: 'follows/follow', locals: { user: tweet.user } %>
+      <% end %>
     </div>
     <p class='card-text tweet-content'><%= tweet.content %></p>
     <div>
       <%= render 'files', tweet: tweet%>
     </div>
-    <% if can_manage_post?(tweet) %>
-      <%= link_to '', edit_tweet_path(tweet), class: 'btn btn-primary far fa-edit', remote: true %>
-      <%= link_to '', tweet, method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: 'btn btn-danger fa-solid fa-trash' %>
-    <% end %>
   </div>
 </div>
